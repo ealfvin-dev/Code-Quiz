@@ -8,6 +8,16 @@ var questions = [
       title: "The condition in an if / else statement is enclosed within ____.",
       choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
       answer: "parentheses"
+    },
+    {
+    title: "Arrays can hold what type of data?",
+    choices: ["integers", "other arrays", "dictionaries", "all of the above"],
+    answer: "all of the above"
+    },
+    {
+    title: "How would you create a new element, myDiv, in jQuery?",
+    choices: ["var myDiv = (\"div\")", "var myDiv = $(\"div\")", "var myDiv = #(\"div\")", "var myDiv = jQuery.IWantToMakeADiv()"],
+    answer: "var myDiv = $(\"div\")"
     }
   ];
 
@@ -71,6 +81,7 @@ function askNextQuestion(event) {
     }
     //Check if it's the last question and ask a new question or end quiz
     if(questionNumber === questions.length) {
+        score += timeLeft;
         endGame();
     }
     else {
