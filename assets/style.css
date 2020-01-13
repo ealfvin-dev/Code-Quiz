@@ -1,0 +1,40 @@
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+#NavBar {
+    background-color: whitesmoke;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+#HighScores {
+    float: left;
+    text-align: center;
+    margin-left: 3%;
+}
+
+#CountDown {
+    float: right;
+    text-align: center;
+    margin-right: 3%;
+}
+
+a {
+    color: purple;
+  }
+
+.container {
+    margin-top: 4%;
+}
+
+#row1, #row2 {
+    padding-top: 2%;
+}
+
+button {
+    background-color: purple;
+    color: white;
+}
