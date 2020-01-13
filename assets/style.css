@@ -30,8 +30,12 @@ a {
     margin-top: 4%;
 }
 
-#row1, #row2 {
+#row1, #row2, #row4, #row5, #row6 {
     padding-top: 2%;
+}
+
+#Answer1, #Answer2, #Answer3, #Answer4 {
+    visibility: hidden;
 }
 
 button {
