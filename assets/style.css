@@ -42,3 +42,8 @@ button {
     background-color: purple;
     color: white;
 }
+
+#Result {
+    margin-top: 2%;
+    font-style: italic;
+}

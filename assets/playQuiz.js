@@ -28,11 +28,16 @@ var score;
 var questionNumber;
 var interval;
 
-//Answer buttons;
+//Answer buttons
 var answer1 = document.getElementById("Answer1");
 var answer2 = document.getElementById("Answer2");
 var answer3 = document.getElementById("Answer3");
 var answer4 = document.getElementById("Answer4");
+
+//Correct/wrong response
+var result = document.getElementById("Result");
+
+var finalScore = document.getElementById("FinalScore");
   
 function initializeQuiz() {
     //Initialize score, question number and countdown timer
@@ -43,14 +48,20 @@ function initializeQuiz() {
     countDownElement.textContent = "Time: " + timeLeft;
 
     //Hide start button, title, instructions and make answer buttons visible
-    document.getElementById("StartQuiz").setAttribute("style", "visibility: hidden");
+    document.getElementById("StartQuiz").setAttribute("style", "visibility: hidden;");
     document.getElementById("Instructions").textContent = "";
-    document.getElementById("Title").setAttribute("style", "visibility: hidden");
+    document.getElementById("Title").setAttribute("style", "visibility: hidden;");
 
-    answer1.setAttribute("style", "visibility: visible");
-    answer2.setAttribute("style", "visibility: visible");
-    answer3.setAttribute("style", "visibility: visible");
-    answer4.setAttribute("style", "visibility: visible");
+    answer1.setAttribute("style", "visibility: visible;");
+    answer2.setAttribute("style", "visibility: visible;");
+    answer3.setAttribute("style", "visibility: visible;");
+    answer4.setAttribute("style", "visibility: visible;");
+
+    //Add event listeners to answer buttons
+    document.getElementById("Answer1").addEventListener("click", askNextQuestion);
+    document.getElementById("Answer2").addEventListener("click", askNextQuestion);
+    document.getElementById("Answer3").addEventListener("click", askNextQuestion);
+    document.getElementById("Answer4").addEventListener("click", askNextQuestion);
 
     //Start timer
     interval = window.setInterval(countDown, 1000);
@@ -74,15 +85,34 @@ function askNextQuestion(event) {
     //Check if correct answer was given
     if(event.target.textContent === questions[questionNumber - 1]["answer"]) {
         score += 5;
+
+        result.textContent = "Correct!";
+        result.setAttribute("style", "color: green; visibility: visible;");
+
+        setTimeout(function() {result.setAttribute("style", "visibility: hidden;");}, 1300);
     }
     else {
         timeLeft -= 15;
 
+        result.textContent = "Wrong";
+        result.setAttribute("style", "color: red; visibility: visible;");
+
+        setTimeout(function() {result.setAttribute("style", "visibility: hidden;");}, 1300);
     }
+
+    //Check if they answered wrong with less than 15 seconds left. End game before displaying next question
+    if(timeLeft <= 0) {
+        timeLeft = 0;
+        endGame();
+
+        return;
+    }
+
     //Check if it's the last question and ask a new question or end quiz
     if(questionNumber === questions.length) {
-        score += timeLeft;
         endGame();
+
+        return;
     }
     else {
         //Display the next question
@@ -99,7 +129,7 @@ function askNextQuestion(event) {
 
 function countDown() {
     timeLeft--;
-    if(timeLeft === 0) {
+    if(timeLeft <= 0) {
         clearInterval(interval);
         endGame();
     }
@@ -114,12 +144,12 @@ function endGame() {
 
     }
 
-    console.log("END");
+    //store the score in local storage, pull back out in javascript that controls the enterScore page
+    score += timeLeft;
+    localStorage.setItem("Score", score);
+
+    //Go to enterScore page
+    window.location.href = "./enterScore.html";
 }
 
 document.getElementById("StartQuiz").addEventListener("click", initializeQuiz);
-
-document.getElementById("Answer1").addEventListener("click", askNextQuestion);
-document.getElementById("Answer2").addEventListener("click", askNextQuestion);
-document.getElementById("Answer3").addEventListener("click", askNextQuestion);
-document.getElementById("Answer4").addEventListener("click", askNextQuestion);
