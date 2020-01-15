@@ -36,16 +36,12 @@ var answer4 = document.getElementById("Answer4");
 
 //Correct/wrong response
 var result = document.getElementById("Result");
-
-var finalScore = document.getElementById("FinalScore");
   
 function initializeQuiz() {
     //Initialize score, question number and countdown timer
     timeLeft = 75;
     score = 0;
     questionNumber = 1;
-
-    countDownElement.textContent = "Time: " + timeLeft;
 
     //Hide start button, title, instructions and make answer buttons visible
     document.getElementById("StartQuiz").setAttribute("style", "visibility: hidden;");
@@ -64,6 +60,7 @@ function initializeQuiz() {
     document.getElementById("Answer4").addEventListener("click", askNextQuestion);
 
     //Start timer
+    countDownElement.textContent = "Time: " + timeLeft;
     interval = window.setInterval(countDown, 1000);
 
     //Ask the first question
@@ -130,19 +127,13 @@ function askNextQuestion(event) {
 function countDown() {
     timeLeft--;
     if(timeLeft <= 0) {
-        clearInterval(interval);
         endGame();
     }
     countDownElement.textContent = "Time: " + timeLeft;
 }
 
 function endGame() {
-    try {
-        clearInterval(interval);
-    }
-    finally {
-
-    }
+    clearInterval(interval);
 
     //store the score in local storage, pull back out in javascript that controls the enterScore page
     score += timeLeft;
