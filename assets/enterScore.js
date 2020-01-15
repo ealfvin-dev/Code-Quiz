@@ -12,5 +12,11 @@ document.getElementById("SubmitScore").addEventListener("click", addToHighScores
 
 function addToHighScores() {
     var name = document.getElementById("PlayerName").value;
-    console.log(name);
+    var highScores = JSON.parse(localStorage.getItem("HighScores"));
+    
+    if(highScores === null) {
+        highScores = {[name]: score};
+        localStorage.setItem("HighScores", JSON.stringify(highScores));
+        console.log(highScores);
+    }
 }
