@@ -1,7 +1,9 @@
-//get score back out of local storage
-var score = localStorage.getItem("Score");
+//Controls how scores get entered in local storage
 
 var scoreDisplay = document.getElementById("FinalScore");
+
+//get current score out of local storage
+var score = localStorage.getItem("Score");
 
 //set back to 0 to prevent directly visiting this page again and seeing a score (you must take the quiz to get a score)
 localStorage.setItem("Score", 0);
