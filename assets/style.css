@@ -34,6 +34,11 @@ a {
     padding-top: 2%;
 }
 
+.row {
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
 #Answer1, #Answer2, #Answer3, #Answer4 {
     visibility: hidden;
 }
