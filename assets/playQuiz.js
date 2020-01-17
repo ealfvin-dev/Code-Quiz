@@ -18,6 +18,11 @@ var questions = [
     title: "How would you create a new element, myDiv, in jQuery?",
     choices: ["var myDiv = (\"div\")", "var myDiv = $(\"div\")", "var myDiv = #(\"div\")", "var myDiv = jQuery.IWantToMakeADiv()"],
     answer: "var myDiv = $(\"div\")"
+    },
+    {
+    title: "What will return True?",
+    choices: ["1 != 2 && 1 === 2", "2 === 3 || 1 != 1", "2 != 2", "(1 === 1 && 2 === 2) || 1 === 2"],
+    answer: "(1 === 1 && 2 === 2) || 1 === 2"
     }
   ];
 
@@ -54,10 +59,10 @@ function initializeQuiz() {
     answer4.setAttribute("style", "visibility: visible;");
 
     //Add event listeners to answer buttons
-    document.getElementById("Answer1").addEventListener("click", askNextQuestion);
-    document.getElementById("Answer2").addEventListener("click", askNextQuestion);
-    document.getElementById("Answer3").addEventListener("click", askNextQuestion);
-    document.getElementById("Answer4").addEventListener("click", askNextQuestion);
+    answer1.addEventListener("click", askNextQuestion);
+    answer2.addEventListener("click", askNextQuestion);
+    answer3.addEventListener("click", askNextQuestion);
+    answer4.addEventListener("click", askNextQuestion);
 
     //Start timer
     countDownElement.textContent = "Time: " + timeLeft;

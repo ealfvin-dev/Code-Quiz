@@ -1,3 +1,5 @@
+//Builds High Scores table
+
 var highscores = JSON.parse(localStorage.getItem("HighScores"));
 
 if(highscores != null) {
